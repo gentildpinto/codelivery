@@ -6,28 +6,31 @@ export type RouteDocument = Route & Document;
 @Schema()
 export class Route {
   @Prop()
+  _id: string;
+
+  @Prop()
   title: string;
 
   @Prop(
     raw({
-      latitude: { type: Number },
-      longitude: { type: Number },
+      lat: { type: Number },
+      lng: { type: Number },
     }),
   )
   startPosition: {
-    latitude: number;
-    longitude: number;
+    lat: number;
+    lng: number;
   };
 
   @Prop(
     raw({
-      latitude: { type: Number },
-      longitude: { type: Number },
+      lat: { type: Number },
+      lng: { type: Number },
     }),
   )
   endPosition: {
-    latitude: number;
-    longitude: number;
+    lat: number;
+    lng: number;
   };
 }
 
