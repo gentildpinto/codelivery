@@ -17,8 +17,8 @@ type (
 	}
 
 	Position struct {
-		Latitude  float64 `json:"latitude"`
-		Longitude float64 `json:"longitude"`
+		Latitude  float64 `json:"lat"`
+		Longitude float64 `json:"lng"`
 	}
 
 	PartialRoutePosition struct {
@@ -74,7 +74,9 @@ func (r *Route) ExportJsonPositions() (result []string, err error) {
 		route.ID = r.ID
 		route.ClientID = r.ClientID
 		route.Position = []float64{v.Latitude, v.Longitude}
-		route.Finished = k == total-1
+		if total-1 == k {
+			route.Finished = true
+		}
 
 		jsonRoute, err := json.Marshal(route)
 		if err != nil {
